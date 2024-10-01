@@ -56,16 +56,16 @@
                         </el-menu-item>
                 </el-submenu>
 
-                <el-submenu index="7">
-                    <template slot="title">
-                        <i class="el-icon-refresh"></i>
-                        <span>公告管理</span>
-                    </template>
-                        <el-menu-item index="/admin/home/notice">
-                            <i class="el-icon-s-order"></i>
-                            <span>系统公告</span>
-                        </el-menu-item>
-                </el-submenu>
+<!--                <el-submenu index="7">-->
+<!--                    <template slot="title">-->
+<!--                        <i class="el-icon-refresh"></i>-->
+<!--                        <span>公告管理</span>-->
+<!--                    </template>-->
+<!--                        <el-menu-item index="/admin/home/notice">-->
+<!--                            <i class="el-icon-s-order"></i>-->
+<!--                            <span>系统公告</span>-->
+<!--                        </el-menu-item>-->
+<!--                </el-submenu>-->
 
             </el-menu>
         </div>

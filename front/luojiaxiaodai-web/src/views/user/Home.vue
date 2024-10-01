@@ -46,14 +46,14 @@
                         </el-menu-item>
                 </el-submenu>
 
-                <el-submenu index="7">
-                    <template slot="title">
-                        <i class="el-icon-s-custom"></i>
-                        <span>公告管理</span>
-                    </template>
-                    <el-menu-item index="/home/noticeu">查看公告
-                    </el-menu-item>
-                </el-submenu>
+<!--                <el-submenu index="7">-->
+<!--                    <template slot="title">-->
+<!--                        <i class="el-icon-s-custom"></i>-->
+<!--                        <span>公告管理</span>-->
+<!--                    </template>-->
+<!--                    <el-menu-item index="/home/noticeu">查看公告-->
+<!--                    </el-menu-item>-->
+<!--                </el-submenu>-->
 
                 <el-submenu index="9">
                     <template slot="title">

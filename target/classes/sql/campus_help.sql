@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `account` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '账号',
-  `password` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
+  `password` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
   `username` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名',
   `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `state` int(11) NOT NULL DEFAULT 0 COMMENT '状态',
