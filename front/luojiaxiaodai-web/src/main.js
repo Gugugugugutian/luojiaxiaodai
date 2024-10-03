@@ -17,9 +17,9 @@ Vue.prototype.$request = request;
 
 // 富文本组件
 import VueQuillEditor from 'vue-quill-editor'
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
+import './quill/dist/quill.core.css'
+import './quill/dist/quill.snow.css'
+import './quill/dist/quill.bubble.css'
 Vue.use(VueQuillEditor)
 
 
