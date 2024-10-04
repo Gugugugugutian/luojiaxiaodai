@@ -2,7 +2,7 @@
     <div class="main">
         <div class="left" :style="{width:isCollapse?'64px':'200px',background:themeColor.bg,color:themeColor.color}" style="transition: .3s;">
             <div class="logo">
-                <img src="@s/assets/logo.jpg" style="width: 26%">
+<!--                <img src="@s/assets/logo.jpg" style="width: 26%">-->
             </div>
             <el-menu
                     :collapse-transition="false"
@@ -95,12 +95,12 @@
                         menu-trigger="click">
 
                     <el-menu-item @click="recharge(user.studentId)">充值余额</el-menu-item>
-                    <el-submenu index="1">
-                        <template slot="title">更换主题</template>
-                        <el-menu-item v-for="item in theme" @click="changeColor(item)">
-                            {{item.name}}
-                        </el-menu-item>
-                    </el-submenu>
+<!--                    <el-submenu index="1">-->
+<!--                        <template slot="title">更换主题</template>-->
+<!--                        <el-menu-item v-for="item in theme" @click="changeColor(item)">-->
+<!--                            {{item.name}}-->
+<!--                        </el-menu-item>-->
+<!--                    </el-submenu>-->
                     <el-submenu index="2">
 <!--                        <template slot="title">{{user.username}}</template>-->
                         <el-avatar slot="title" style="background: #65c4a6; user-select: none;">{{firstName}}</el-avatar>
