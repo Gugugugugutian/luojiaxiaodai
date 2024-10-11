@@ -1,10 +1,10 @@
 <template>
     <div class="content">
         <el-row>
-        <el-col :span="24"><div class="grid-content bg-purple-dark">欢迎登录---校园跑腿管理系统</div></el-col>
+        <el-col :span="24"><div class="grid-content bg-purple-dark">珞珈小代：代取快递系统欢您！</div></el-col>
         </el-row>
         <el-alert
-                :title="user.school.name + '- - -任务平台共' + tasks.length + '个任务'"
+                :title="user.school.name + '当前学校共有' + tasks.length + '个任务'"
                 :closable="false"
                 type="info">
         </el-alert>
@@ -13,10 +13,10 @@
                 <h2>{{tasks.length}}</h2>
                 <p>任务数量</p>
             </div>
-            <div class="title_right">
-                <h2>{{users.length}}</h2>
-                <p>总用户</p>
-            </div>
+<!--            <div class="title_right">-->
+<!--                <h2>{{users.length}}</h2>-->
+<!--                <p>总用户</p>-->
+<!--            </div>-->
         </div>
     </div>
 </template>

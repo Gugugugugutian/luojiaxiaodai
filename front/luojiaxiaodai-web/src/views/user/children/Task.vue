@@ -18,21 +18,50 @@
             </div>
             <div class="input">
                 <div class="append">奖励</div>
-                <el-input placeholder="请输入奖励" v-model="reward" oninput="value=value.replace(/[^\d]/g,'')"></el-input>
+                <el-input placeholder="请输入奖励（单位：元）" v-model="reward" oninput="value=value.replace(/[^\d]/g,'')"></el-input>
                 <div class="append" style="border-right: 1px solid #DCDFE6;border-left: none;">余额：{{user.balance}}元
                 </div>
             </div>
             <el-card class="box-card">
                 <div slot="header" class="clearfix">
-                    <span>详细描述</span>
+                    <span>任务详情</span>
                 </div>
-                <el-input
-                        resize="none"
-                        type="textarea"
-                        :autosize="{ minRows: 6, maxRows: 10}"
-                        placeholder="请输入内容"
-                        v-model="taskContext" style="padding: 0">
-                </el-input>
+              <div class="input">
+                <div class="append">快递点</div>
+                <el-input placeholder="请输入快递点" v-model="expressPoint"></el-input>
+              </div>
+              <div class="input">
+                <div class="append">取件码</div>
+                <el-input placeholder="请输入取件码" v-model="code"></el-input>
+              </div>
+              <div class="input">
+                <div class="append">物品重量</div>
+                <el-radio-group v-model="weight" style="flex: 5;">
+                  <el-radio label="轻">轻（1kg-）</el-radio>
+                  <el-radio label="常规">常规（1kg-10kg）</el-radio>
+                  <el-radio label="重">重（10kg+）</el-radio>
+                </el-radio-group>
+              </div>
+              <div class="input">
+                <div class="append">快递公司</div>
+                <el-input placeholder="请输入快递公司" v-model="expressCompany"></el-input>
+              </div>
+              <div class="input">
+                <div class="append">快递单号</div>
+                <el-input placeholder="请输入快递单号" v-model="expressNumber"></el-input>
+              </div>
+              <div class="input">
+                <div class="append">收件人姓名</div>
+                <el-input placeholder="请输入收件人姓名" v-model="name"></el-input>
+              </div>
+              <div class="input">
+                <div class="append">收件人电话</div>
+                <el-input placeholder="请输入收件人电话" v-model="phone"></el-input>
+              </div>
+              <div class="input">
+                <div class="append">备注</div>
+                <el-input placeholder="您可以输入备注" v-model="taskContext"></el-input>
+              </div>
             </el-card>
         </el-card>
         <el-drawer
@@ -49,7 +78,8 @@
                             <div>{{taskTitle}}</div>
                         </el-collapse-item>
                         <el-collapse-item title="任务内容" name="2">
-                            <div>{{taskContext}}</div>
+<!--                            <div>{{taskContext}}</div>-->
+                          <div>请到任务详情页面查看</div>
                         </el-collapse-item>
                         <el-collapse-item title="任务奖励" name="3">
                             <div><i class="el-icon-money" style="color: red;"> {{reward}}元</i></div>
@@ -75,9 +105,23 @@
                 // 任务奖励
                 reward: "",
                 // 任务标题
-                taskTitle: "",
+                taskTitle: "代取快递",
                 // 任务内容
                 taskContext: "",
+                // 快递点
+                expressPoint: "",
+                // 取件码
+                code: "",
+                // 物品重量
+                weight: "轻",
+                // 快递公司
+                expressCompany: "",
+                // 快递单号
+                expressNumber: "",
+                // 收件人姓名
+                name: "",
+                // 收件人电话
+                phone: "",
                 // 发布时间
                 createTime: "",
                 // 零钱
@@ -95,6 +139,19 @@
             ...mapMutations('user', ['setUser']),
             
             submitTask() {
+              // 快递任务的格式：kd&加任务内容，以&%&分开
+              this.taskContext = [
+                  '快递',
+                  this.expressPoint,
+                  this.code,
+                  this.weight,
+                  this.expressCompany,
+                  this.expressNumber,
+                  this.name,
+                  this.phone,
+                  this.taskContext
+              ].join('%&')
+
                 if (this.taskTitle && this.reward > 0 && this.taskContext) {
                     // console.log(this.user)
                     this.$post("/task",
@@ -125,7 +182,7 @@
                         sessionStorage.setItem('user', JSON.stringify(response.data.user))
                         this.setUser(JSON.parse(sessionStorage.getItem('user')))
                     })
-            }
+            },
         },
         created() {
             this.renew()

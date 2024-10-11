@@ -38,7 +38,17 @@
 
                 <el-collapse style="margin-top: 20px" v-model="activeNames">
                     <el-collapse-item title="任务内容" name="1">
-                        <div>{{item.taskContext}}</div>
+                        <div>
+                          {{item.taskContext[0]}}
+                          <br/>快递点：{{item.taskContext[1]}}
+                          <br/>取件码：{{item.taskContext[2]}}
+                          <br/>重量：{{item.taskContext[3]}}
+                          <br/>快递公司：{{item.taskContext[4]}}
+                          <br/>快递单号：{{item.taskContext[5]}}
+                          <br/>收件人姓名：{{item.taskContext[6]}}
+                          <br/>收件人电话：{{item.taskContext[7]}}
+                          <br/>备注：{{item.taskContext[8]}}
+                        </div>
                     </el-collapse-item>
                     <el-collapse-item title="任务奖励" name="2">
                         <div><i class="el-icon-money" style="color: red;"> {{item.reward}}元</i></div>
@@ -140,8 +150,13 @@
         methods: {
             retrieveData() {
                 this.$get("/task/published", {id: this.user.id}).then(res => {
-                    console.log(res.data.task)
                     this.tasks = res.data.task
+                }).then(()=>{
+                  // console.log(this.tasks)
+                  // 解析任务语句为数组
+                  for(let task of this.tasks) {
+                    task.taskContext = task.taskContext.split('%&')
+                  }
                 })
             },
             receiver(val) {

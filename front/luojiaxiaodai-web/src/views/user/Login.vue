@@ -22,7 +22,7 @@
                         :value="item.id">
                 </el-option>
             </el-select>
-            <p class="forgot-pass"><a href="javascript:">忘记密码？</a></p>
+<!--            <p class="forgot-pass"><a href="javascript:">忘记密码？</a></p>-->
             <button type="button" class="submit" @click="toLogin('sign')">登 录</button>
         </div>
         <div class="sub-cont">
@@ -242,7 +242,7 @@
         top: 0;
         width: 900px;
         height: 100%;
-        background-image: url(../../assets/img/test1.jpg);
+        background-image: url(../../assets/img/test2.jpg);
         background-size: cover;
         transition: -webkit-transform 0.6s ease-in-out;
         transition: transform 0.6s ease-in-out;
@@ -256,7 +256,7 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.3);
     }
 
     .content.s--signup .img:before {
