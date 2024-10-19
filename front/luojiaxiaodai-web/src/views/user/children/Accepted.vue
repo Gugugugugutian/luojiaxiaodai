@@ -120,7 +120,7 @@
             newList() {
                 this.$get("/task/accepted", {id: this.user.id})
                     .then(res => {
-                      this.tasks = res.data.task
+                      this.tasks = res.data.task.reverse()
                     }).then(()=>{
                   // console.log(this.tasks)
                   // 解析任务语句为数组
