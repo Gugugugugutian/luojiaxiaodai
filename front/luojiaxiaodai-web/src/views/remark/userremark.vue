@@ -26,13 +26,12 @@
 
 
     <el-table v-loading="loading" :data="remarkList"  @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
        <el-table-column label="任务id" align="center" prop="taskId" />
       <el-table-column label="评价人id" align="center" prop="publishId" />
 
       <el-table-column label="评分" min-width="100" align="center" prop="star">
         <template slot-scope="scope">
-          <el-rate
+          <el-rate disabled
             v-model="scope.row.star"
             show-text>
           </el-rate>
@@ -53,17 +52,15 @@
     <!-- 添加或修改remark对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-      
-        <el-form-item label="星级" prop="star">
-            <el-rate
-                v-model="form.star"
-                show-text>
-            </el-rate>
+        <el-form-item label="星级" prop="star" style="display:flex;align-items: center">
+          <el-rate style="margin-left: -70px"
+                   v-model="form.star"
+                   show-text>
+          </el-rate>
         </el-form-item>
         <el-form-item label="评价内容" prop="remark">
-          <el-input v-model="form.remark" placeholder="请输入评价内容" />
+          <el-input v-model="form.remark" placeholder="请输入评价内容"/>
         </el-form-item>
-      
       </el-form>
 
     </el-dialog>
