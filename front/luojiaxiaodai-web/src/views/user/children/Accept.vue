@@ -37,12 +37,8 @@
                     <el-collapse-item title="任务内容" name="1">
                       <div style="margin-left: 20px" >
                         <br/>快递点：{{item.taskContext[1]}}
-                        <br/>取件码：{{item.taskContext[2]}}
                         <br/>重量：{{item.taskContext[3]}}
                         <br/>快递公司：{{item.taskContext[4]}}
-                        <br/>快递单号：{{item.taskContext[5]}}
-                        <br/>收件人姓名：{{item.taskContext[6]}}
-                        <br/>收件人电话：{{item.taskContext[7]}}
                         <br/>收件人地址：{{item.taskContext[8]}}
                         <br/>备注：{{item.taskContext[9]}}
                       </div>
