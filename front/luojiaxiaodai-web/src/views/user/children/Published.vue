@@ -15,7 +15,7 @@
 
           <!-- 评价按钮 -->
           <el-button v-show="item.state == 2"
-                     style="float: right; padding: 3px 0" type="text" @click="remark()">订单评价
+                     style="float: right; padding: 3px 0" type="text" @click="remark(item)">订单评价
           </el-button>
 
 
@@ -34,9 +34,9 @@
         <el-steps :active="item.state + 1" finish-status="success">
           <el-step title="发布成功" :description="item.createTime | formatDate"></el-step>
           <el-step title="服务中" :description="item.orderTime ? transform(item.orderTime):'暂时没人服务'"></el-step>
-          <el-step title="完成时间" :description="item.endTime ? transform(item.endTime):''"></el-step>
+          <el-step title="完成" :description="item.endTime ? transform(item.endTime):''"></el-step>
         </el-steps>
-
+<!--        TODO:点击折叠后不同card中同一item会一同折叠，需要修改-->
         <el-collapse style="margin-top: 20px" v-model="activeNames">
           <el-collapse-item title="任务内容" name="1">
             <div>
@@ -140,6 +140,8 @@ export default {
       rules: {},
       // 弹出层标题
       title: "",
+      // 当前评价对应的item
+      item:[]
     };
   },
   computed: {
@@ -205,9 +207,10 @@ export default {
       })
     },
     // 评价用户
-    remark() {
+    remark(item) {
       this.open = true;
       this.title = "添加评价";
+      this.item = item;
     },
 
     /** 提交按钮 */
@@ -230,6 +233,8 @@ export default {
         }).then(response => {
           this.$message("新增成功");
           this.open = false;
+          this.item.state = 3;  // 3:完成评价
+          // TODO:将数据库中state设为3，防止反复评价
         });
       }
     },
