@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div class="left" :style="{width:isCollapse?'64px':'200px'}" style="transition: .3s;">
-            <div class="logo">校园帮</div>
+            <div class="logo">珞珈小代</div>
 
             <el-menu
                     :collapse-transition="false"
