@@ -47,7 +47,7 @@
                           <br/>快递单号：{{item.taskContext[5]}}
                           <br/>收件人姓名：{{item.taskContext[6]}}
                           <br/>收件人电话：{{item.taskContext[7]}}
-                          <br/>备注：{{item.taskContext[8]}}
+                          <br/>收件人地址：{{item.taskContext[8]}}
                         </div>
                     </el-collapse-item>
                     <el-collapse-item title="任务奖励" name="2">

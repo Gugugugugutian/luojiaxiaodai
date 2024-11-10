@@ -59,8 +59,8 @@
                 <el-input placeholder="请输入收件人电话" v-model="phone"></el-input>
               </div>
               <div class="input">
-                <div class="append">备注</div>
-                <el-input placeholder="您可以输入备注" v-model="taskContext"></el-input>
+                <div class="append">收件地址</div>
+                <el-input placeholder="您可以输入收件地址" v-model="taskContext"></el-input>
               </div>
             </el-card>
         </el-card>

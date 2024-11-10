@@ -32,7 +32,7 @@
                             
                             <div slot="header" class="clearfix">
                                 <span>{{item.publish.username}}</span>
-                                <el-button style="float: right; padding: 3px 0" type="text">投诉</el-button>
+<!--                                <el-button style="float: right; padding: 3px 0" type="text">投诉</el-button>-->
                             </div>
 
                             <div class="box_center">
