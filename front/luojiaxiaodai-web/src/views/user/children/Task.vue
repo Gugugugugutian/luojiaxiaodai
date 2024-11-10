@@ -186,6 +186,7 @@
         },
         created() {
             this.renew()
+          this.expressPoint = this.$store.state.packagePoint;
         },
         filters: {
             formatDate(time) {

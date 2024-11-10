@@ -10,13 +10,19 @@ export default new Vuex.Store({
   // state中存放的就是全局共享的数据
   // state提供唯一的公共数据源，所有共享的数据都要统一放到Store的State中进行存储
   state: {
-    active:0
+    active:0,
+    // 快递点
+    packagePoint: ''
   },
   // Mutation用于变更Store中的数据
   // 只能通过mutation变更store数据，不可以直接操作store中的数据
   mutations: {
     setActive(state,val){
       state.active = val
+    },
+    setPackagePoint(state,val){
+      state.packagePoint = val
+      // console.log('oooook')
     }
   },
   // Action用于处理异步任务

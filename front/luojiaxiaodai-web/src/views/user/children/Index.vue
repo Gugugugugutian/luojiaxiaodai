@@ -19,6 +19,33 @@
             </div>
         </div>
 
+<!--    快速发布任务页面-->
+        <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>快速发布任务</span>
+            </div>
+<!--          快递点选单-->
+
+          <div label-width="100px" class="demo-ruleForm">
+            您可在这里选择一个快递点，然后快速发布任务。
+            <br></br>快递点：
+            <el-select v-model="ruleForm.point" placeholder="请选择">
+              <el-option
+                  v-for="item in packages"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+              </el-option>
+            </el-select>
+
+            <el-button
+                type="primary"
+                @click="submitForm()">快速发布
+            </el-button>
+          </div>
+
+        </el-card>
+
         <el-card class="box-card">
             <div slot="header" class="clearfix">
               <span>使用帮助</span>
@@ -108,6 +135,7 @@
 
 <script>
     import {mapMutations, mapState} from "vuex";
+    import {listAdvise} from "@/api/notice/advise";
 
     export default {
         name: "Index",
@@ -115,9 +143,49 @@
             return {
                 tasks: [],
                 users: [],
+                packages: [
+                  {
+                    pkg_from: "枫园妈妈驿站",
+                    pkg_to: "新校区快递中心",
+                    pkg_id: "",
+                    pkg_company: "",
+                  },
+                ],
+              // 查询参数
+              queryParams: {
+                pageNum: 1,
+                pageSize: 10,
+                noticeTitle: null,
+                noticeContent: null,
+              },
+              // 快速发布表单
+              ruleForm: {
+                  point: '',
+              },
             }
         },
         methods: {
+          // 获取快递点列表
+          getList() {
+            listAdvise(this.queryParams).then(response => {
+              this.packages = response.data.rows.map(
+                  (item) => {
+                    return {
+                      value: item.noticeTitle,
+                      label: item.noticeTitle,
+                    }
+                  }
+              );
+            });
+          },
+          // 快速发布任务
+          submitForm() {
+            this.$store.commit(
+                 'setPackagePoint',
+                 this.ruleForm.point
+            );
+            this.$router.push({path: '/home/task'});
+          },
         },
         computed: {
             ...mapState('user', ['user'])
@@ -133,7 +201,7 @@
             .then((rs) => {
                 this.users = rs.data.user
             })
-
+            this.getList();
         },
 
     }
