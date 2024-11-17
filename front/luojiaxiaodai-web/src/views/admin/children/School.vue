@@ -77,6 +77,8 @@
 </template>
 
 <script>
+    import {updateStuage} from "@/api/student/stuage";
+
     export default {
         name: "School",
         data() {
@@ -118,7 +120,7 @@
 
             /** 提交按钮 */
             submit() {
-                console.log(this.value.children.[0])
+                // console.log(this.value.children.[0])
             this.$refs["form"].validate(valid => {
                 if (valid) {
                     if (this.form.id != null) {
