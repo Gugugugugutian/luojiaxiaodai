@@ -141,12 +141,12 @@
                             }).then(response => {
                                 const name = this.form.deptname;
                                 for(let i=0 ;i<this.value.children.length;i++){
-                                    if(this.value.children.[i].deptname==name){
+                                    if(this.value.children[i].deptname==name){
                                         this.$message("新增专业成功");
                                         this.newList();
                                         this.$post("/class",{
                                         "schoolId":this.value.schoolId,
-                                        "deptId":this.value.children.[i].deptsId,
+                                        "deptId":this.value.children[i].deptsId,
                                         "name": this.form.classesname,
                                         }).then(response => {
                                             this.$message("新增班级成功");
