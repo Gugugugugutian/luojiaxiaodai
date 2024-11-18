@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div class="left" :style="{width:isCollapse?'64px':'200px'}" style="transition: .3s;">
-            <div class="logo">校园帮</div>
+            <div class="logo">珞珈小代</div>
 
             <el-menu
                     :collapse-transition="false"
@@ -56,16 +56,16 @@
                         </el-menu-item>
                 </el-submenu>
 
-<!--                <el-submenu index="7">-->
-<!--                    <template slot="title">-->
-<!--                        <i class="el-icon-refresh"></i>-->
-<!--                        <span>公告管理</span>-->
-<!--                    </template>-->
-<!--                        <el-menu-item index="/admin/home/notice">-->
-<!--                            <i class="el-icon-s-order"></i>-->
-<!--                            <span>系统公告</span>-->
-<!--                        </el-menu-item>-->
-<!--                </el-submenu>-->
+                <el-submenu index="7">
+                    <template slot="title">
+                        <i class="el-icon-refresh"></i>
+                        <span>快递点管理</span>
+                    </template>
+                        <el-menu-item index="/admin/home/notice">
+                            <i class="el-icon-s-order"></i>
+                            <span>快递点</span>
+                        </el-menu-item>
+                </el-submenu>
 
             </el-menu>
         </div>

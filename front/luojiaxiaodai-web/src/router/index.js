@@ -109,7 +109,7 @@ const routes = [
             {
                 name:"notice",
                 path:"notice",
-                meta:{title:"公告管理"},
+                meta:{title:"快递点管理"},
                 component:() => import("@v/notice/advise.vue")
             },
             {

@@ -1,26 +1,26 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="公告标题" prop="noticeTitle">
-        <el-input
-          v-model="queryParams.noticeTitle"
-          placeholder="请输入公告标题"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="公告内容" prop="noticeContent">
-        <el-input
-          v-model="queryParams.noticeContent"
-          placeholder="请输入公告内容"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-      </el-form-item>
-    </el-form>
+<!--    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">-->
+<!--      <el-form-item label="公告标题" prop="noticeTitle">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.noticeTitle"-->
+<!--          placeholder="请输入公告标题"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="公告内容" prop="noticeContent">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.noticeContent"-->
+<!--          placeholder="请输入公告内容"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item>-->
+<!--        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>-->
+<!--      </el-form-item>-->
+<!--    </el-form>-->
 
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
@@ -30,7 +30,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-        >发布公告</el-button>
+        >添加快递点</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -58,9 +58,8 @@
     <el-table v-loading="loading" :data="adviseList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="序号" align="center" prop="noticeId" width="100" />
-      <el-table-column label="公告标题" align="center" prop="noticeTitle" />
+      <el-table-column label="快递点名称" align="center" prop="noticeTitle" />
       <el-table-column label="创建者" align="center" prop="createBy" width="100" />
-
       <el-table-column label="创建时间" align="center" prop="createTime" width="200">
         <template slot-scope="scope">
           <span>{{ transform(scope.row.createTime) }}</span>
@@ -94,21 +93,21 @@
     /> -->
 
     <!-- 添加或修改通知公告公告对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="743px" append-to-body>
+    <el-dialog title="请输入快递点信息" :visible.sync="open" width="743px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="公告标题" prop="noticeTitle">
-          <el-input v-model="form.noticeTitle" placeholder="请输入公告标题" />
+        <el-form-item label="快递点名" prop="noticeTitle">
+          <el-input v-model="form.noticeTitle" placeholder="请输入" />
         </el-form-item>
-        <el-form-item label="公告内容" prop="noticeContent">
-          <el-input
-                        resize="none"
-                        type="textarea"
-                        :autosize="{ minRows: 6, maxRows: 10}"
-                        placeholder="请输入公告内容"
-                        v-model="form.noticeContent" style="padding: 0">
-          </el-input>
-          <!-- <quill-editor v-model="form.noticeContent" placeholder="请输入公告内容" /> -->
-        </el-form-item>
+<!--        <el-form-item label="公告内容" prop="noticeContent">-->
+<!--          <el-input-->
+<!--                        resize="none"-->
+<!--                        type="textarea"-->
+<!--                        :autosize="{ minRows: 6, maxRows: 10}"-->
+<!--                        placeholder="请输入公告内容"-->
+<!--                        v-model="form.noticeContent" style="padding: 0">-->
+<!--          </el-input>-->
+<!--          &lt;!&ndash; <quill-editor v-model="form.noticeContent" placeholder="请输入公告内容" /> &ndash;&gt;-->
+<!--        </el-form-item>-->
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" placeholder="请输入备注" />
         </el-form-item>
