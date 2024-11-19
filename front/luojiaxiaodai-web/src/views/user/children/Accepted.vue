@@ -2,7 +2,7 @@
     <div class="content">
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <span>已接收任务</span>
+                <span>已接受任务</span>
             </div>
             
             <!-- 已接受任务卡片 -->
@@ -24,7 +24,7 @@
                     </template>
                 </div>
                 <div>
-                    {{item.taskContext}}
+                    {{item.taskContext[0]}}
                 </div>
                 <el-collapse style="margin-top: 20px" v-model="activeNames">
                     <el-collapse-item title="发布人信息" name="1">
@@ -58,6 +58,19 @@
                         </el-card>
 
                     </el-collapse-item>
+                  <el-collapse-item title="任务内容" name="3">
+                    <div style="margin-left: 20px" >
+                      <br/>快递点：{{item.taskContext[1]}}
+                      <br/>取件码：{{item.taskContext[2]}}
+                      <br/>重量：{{item.taskContext[3]}}
+                      <br/>快递公司：{{item.taskContext[4]}}
+                      <br/>快递单号：{{item.taskContext[5]}}
+                      <br/>收件人姓名：{{item.taskContext[6]}}
+                      <br/>收件人电话：{{item.taskContext[7]}}
+                      <br/>收件人地址：{{item.taskContext[8]}}
+                      <br/>备注：{{item.taskContext[9]}}
+                    </div>
+                  </el-collapse-item>
                     <el-collapse-item title="查看钱款" name="2" v-if="item.state == 2">
                         <el-card class="box-card">
                             <div>
@@ -107,9 +120,14 @@
             },
             newList() {
                 this.$get("/task/accepted", {id: this.user.id})
-                .then(res => {
-                    this.tasks = res.data.task
-                    // console.log(this.tasks)
+                    .then(res => {
+                      this.tasks = res.data.task.reverse()
+                    }).then(()=>{
+                  // console.log(this.tasks)
+                  // 解析任务语句为数组
+                  for(let task of this.tasks) {
+                    task.taskContext = task.taskContext.split('%&')
+                  }
                 })
             }
         },

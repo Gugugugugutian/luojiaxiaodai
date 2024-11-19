@@ -28,10 +28,22 @@
                         </el-button>
                     </div>
                     <div class="text item">
-                        <p class="el-icon-s-custom">{{item.publish.username}}<span style="margin-left: 10px;">{{item.taskContext}}</span>
+                        <p class="el-icon-s-custom">{{item.publish.username}}<span style="margin-left: 10px;">{{item.taskContext[0]}}</span>
                         </p>
                         <span style="float: right">{{item.createTime | formatDate}}</span>
                     </div>
+
+                  <el-collapse style="margin-top: 20px" v-model="activeNames">
+                    <el-collapse-item title="任务内容" name="1">
+                      <div style="margin-left: 20px" >
+                        <br/>快递点：{{item.taskContext[1]}}
+                        <br/>重量：{{item.taskContext[3]}}
+                        <br/>快递公司：{{item.taskContext[4]}}
+                        <br/>收件人地址：{{item.taskContext[8]}}
+                        <br/>备注：{{item.taskContext[9]}}
+                      </div>
+                    </el-collapse-item>
+                  </el-collapse>
                 </el-card>
                 <div style="text-align: center" v-if="tasks.length == 0">
                     <span><i class="el-icon-refresh-right"></i>暂无任务</span>
@@ -88,8 +100,14 @@
         created() {
             // console.log(this.user)
             this.$get("/task", {id: this.user.id})
-                .then((res) => {
-                    this.tasks = res.data.task
+                .then(res => {
+                  this.tasks = res.data.task.reverse()
+                }).then(()=>{
+              // console.log(this.tasks)
+              // 解析任务语句为数组
+              for(let task of this.tasks) {
+                task.taskContext = task.taskContext.split('%&')
+              }
             })
 
         },

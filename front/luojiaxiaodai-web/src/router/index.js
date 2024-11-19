@@ -41,12 +41,12 @@ const routes = [
             },
             {
                 path: "accepted",
-                meta: {title: "已接收任务"},
+                meta: {title: "已接受任务"},
                 component:()=>import('@v/user/children/Accepted.vue')
             },
             {
                 path: "accept",
-                meta: {title: "已接收任务"},
+                meta: {title: "已接受任务"},
                 component:()=>import('@v/user/children/Accept.vue')
             },
             {
