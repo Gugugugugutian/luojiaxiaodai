@@ -29,8 +29,8 @@ public class CorsConfig implements WebMvcConfigurer {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.qq.com");
         mailSender.setPort(587);
-        mailSender.setUsername("2530141349@qq.com");
-        mailSender.setPassword("ghgpfsysstrrdiig");
+        mailSender.setUsername("luojiaxiaodai@foxmail.com");
+        mailSender.setPassword("cckrfohalfqkbgdb");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
