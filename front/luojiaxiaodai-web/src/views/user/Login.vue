@@ -22,7 +22,10 @@
                         :value="item.id">
                 </el-option>
             </el-select>
-<!--            <p class="forgot-pass"><a href="javascript:">忘记密码？</a></p>-->
+                <p class="forgot-pass">
+                  <router-link to="/forgot-password">忘记密码？</router-link>
+                </p>
+
             <button type="button" class="submit" @click="toLogin('sign')">登 录</button>
         </div>
         <div class="sub-cont">
