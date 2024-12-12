@@ -21,6 +21,7 @@ public class User {
     private String studentId;
     private String password;
     private String phone;
+    private String email; // 新增字段
     private Long schoolId;
     private Long deptId;
     private Long classId;
@@ -37,3 +38,4 @@ public class User {
     @TableField(exist = false)
     private Class aClass;
 }
+

@@ -229,8 +229,9 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `student_id` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '学号',
-  `password` varchar(128) NOT NULL COMMENT '密码',
+  `password` varchar(255) NOT NULL COMMENT '密码（加密）',
   `phone` varchar(11) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '手机号',
+  `email` varchar(255) DEFAULT NULL COMMENT '邮箱',
   `school_id` int NOT NULL COMMENT '学校id',
   `dept_id` int DEFAULT NULL COMMENT '系别id',
   `class_id` int DEFAULT NULL COMMENT '班级id',
@@ -239,14 +240,18 @@ CREATE TABLE `user` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `balance` double DEFAULT '0' COMMENT '余额',
   `state` int NOT NULL DEFAULT '0' COMMENT '状态',
+  `reset_token` varchar(255) DEFAULT NULL COMMENT '密码重置令牌',
+  `reset_token_expiration` datetime DEFAULT NULL COMMENT '令牌过期时间',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `FK_USER_SCHOOL` (`school_id`) USING BTREE,
   KEY `FK_USER_DEPT` (`dept_id`) USING BTREE,
   KEY `FK_USER_CLASS` (`class_id`) USING BTREE,
+  KEY `idx_user_email` (`email`),
+  KEY `idx_user_reset_token` (`reset_token`),
   CONSTRAINT `FK_USER_CLASS` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FK_USER_DEPT` FOREIGN KEY (`dept_id`) REFERENCES `dept` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FK_USER_SCHOOL` FOREIGN KEY (`school_id`) REFERENCES `school` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,5 +272,14 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+UPDATE `user`
+SET `email` = 'user1@example.com',
+    `reset_token` = NULL,
+    `reset_token_expiration` = NULL
+WHERE `id` = 14;
+
+INSERT INTO `user` (`student_id`, `password`, `phone`, `email`, `school_id`, `dept_id`, `class_id`, `sex`, `username`, `create_time`, `balance`, `state`)
+VALUES ('2021300004060', 'e10adc3949ba59abbe56e057f20f883e', '13900000000', '2530141349@qq.com', 13, 14, 1, 0, '测试用户', NOW(), 100, 0);
 
 -- Dump completed on 2024-11-17 17:34:29

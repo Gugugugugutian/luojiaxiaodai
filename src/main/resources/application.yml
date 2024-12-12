@@ -17,6 +17,21 @@ spring:
       web-stat-filter:
         enabled: true
         url-pattern: /*
+
+      mail:
+        username: 2530141349@qq.com
+        password: ghgpfsysstrrdiig
+        host: smtp.qq.com
+        protocol: smtp
+        default-encoding: UTF-8
+        properties:
+          mail.smtp.auth: true
+          mail.smtp.starttls.enable: true
+          mail.smtp.starttls.required: true
+          mail.smtp.socketFactory.port: 587 #协议为SMTP是SSL端口号465
+          mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+          mail.smtp.socketFactory.fallback: false
+
 logging:
   level:
     com.yqn.mapper: debug
