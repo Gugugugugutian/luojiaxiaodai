@@ -20,6 +20,7 @@ public class SchoolServiceImpl extends ServiceImpl<SchoolMapper, School> impleme
     public boolean save(School entity) {
         QueryWrapper<School> wrapper = new QueryWrapper<>();
         wrapper.eq("name", entity.getName());
+        wrapper.eq("domain", entity.getDomain());
 
         School school = schoolMapper.selectOne(wrapper);
         if (school == null) {
