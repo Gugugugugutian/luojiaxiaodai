@@ -1,11 +1,16 @@
 <template>
   <div class="forgot-password-container">
     <div class="form">
-      <h2>找回密码</h2>
+      <div class="return-container">
+        <span class="icon" @click="goBack">
+          <i class="fas fa-arrow-left"></i>
+        </span>
+        <h2 style="text-align: center">找回密码</h2>
+      </div>
       <!-- 输入账号 (student_id) -->
       <label>
-        <span>学号</span>
-        <input type="text" v-model="studentId" placeholder="请输入学号" required />
+          <span>学号</span>
+          <input type="text" v-model="studentId" placeholder="请输入学号" required />
       </label>
       <!-- 输入邮箱 -->
       <label>
@@ -45,6 +50,10 @@ export default {
     };
   },
   methods: {
+    // 返回上一级
+    goBack() {
+      this.$router.go(-1);
+    },
     // 发送验证码
     sendCode() {
       if (!this.studentId || !this.email) {
@@ -107,7 +116,18 @@ export default {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.return-container {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  font-size: 18px;
+  transform: translate(0, -50%);
+}
+
+title {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
