@@ -54,6 +54,32 @@ public class PasswordController {
         }
     }
 
+    @PostMapping("/register/send-code")
+    public ResponseEntity<Map<String, Object>> sendCodeRegister(@RequestParam String email) {
+        Map<String, Object> response = new HashMap<>();
+
+        // 生成6位随机验证码
+        String code = String.format("%06d", new Random().nextInt(999999));
+        verificationCodes.put(email, code);
+
+        try {
+            // 发送邮件
+            mailUtil.sendEmail(email, "注册验证码", "您的验证码是：" + code);
+            response.put("status", true);
+            response.put("msg", "验证码发送成功");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("status", false);
+            response.put("msg", "验证码发送失败，请检查邮箱配置");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+    @PostMapping("/register/verifyCodes")
+    public boolean verifyCodes(@RequestParam String email, @RequestParam String code) {
+        return verificationCodes.containsKey(email) && verificationCodes.get(email).equals(code);
+    }
+
     /**
      * 重置密码
      */
