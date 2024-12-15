@@ -152,10 +152,6 @@
                     <el-input v-model.number="ruleForm.phone"></el-input>
                 </el-form-item>
 
-                <el-form-item label="邮箱" prop="email">
-                    <el-input v-model="ruleForm.email" type="email" placeholder="请输入邮箱"></el-input>
-                </el-form-item>
-
                 <el-form-item label="性别">
                     <el-radio-group v-model="sex">
                         <el-radio label="0">男</el-radio>
@@ -176,9 +172,6 @@
                 </el-form-item>
                 <el-form-item label="手机号" prop="phone">
                     <el-input v-model.number="ruleForm.phone" oninput="if(value.length>11)value=value.slice(0,11)"></el-input>
-                </el-form-item>
-                <el-form-item label="邮箱" prop="email">
-                    <el-input v-model="ruleForm.email" type="email" placeholder="请输入邮箱"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -224,7 +217,6 @@
                                     "classId": this.value[1],
                                     "username": this.ruleForm.username,
                                     "phone": this.ruleForm.phone,
-                                    "email": this.ruleForm.email,
                                     'sex' : this.sex
                                 })
                             .then(res => {
@@ -282,10 +274,9 @@
                 this.dialogVisible = true;
                 this.ruleForm.username = this.user.username
                 this.ruleForm.phone = this.user.phone
-                this.ruleForm.email = this.user.email
             },
             submitChanges(){
-                this.$put("/user",{id:this.user.id,username:this.ruleForm.username,phone:this.ruleForm.phone,email:this.ruleForm.email})
+                this.$put("/user",{id:this.user.id,username:this.ruleForm.username,phone:this.ruleForm.phone})
                 .then(res=>{
                     this.$notifyMsg("成功",res.data.msg,"success",1000);
                     this.dialogVisible = false;
@@ -344,8 +335,7 @@
                 firstName:'',
                 ruleForm: {
                     username: '',
-                    phone: '',
-                    email: '' // 新增邮箱字段
+                    phone: ''
                 },
                 rules: {
                     username: [
@@ -353,18 +343,6 @@
                     ],
                     phone: [
                         {validator: validatePhone, trigger: 'blur'}
-                    ],
-                    email: [
-                        {
-                            required: true,
-                            message: '请输入邮箱地址',
-                            trigger: 'blur'
-                        },
-                        {
-                            pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
-                            message: '邮箱格式不正确',
-                            trigger: 'blur'
-                        }
                     ]
                 },
                 //颜色
