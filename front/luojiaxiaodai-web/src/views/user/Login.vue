@@ -103,7 +103,7 @@ export default {
       password: "",
       school: [],
       schoolId: '',
-      schoolDomain:"xxx.xxx",
+      schoolDomain:"whu.edu.cn",
       email: "",
       verificationCode: "",
       isCodeSent: false // 防止重复发送验证码
